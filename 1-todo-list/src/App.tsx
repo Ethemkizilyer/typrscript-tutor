@@ -11,6 +11,8 @@ interface Task {
 
 function App() {
   const textRef = React.useRef<HTMLInputElement | null>(null);
+  const asdd = React.useRef<HTMLInputElement | null>(null);
+  console.log(asdd.current?.value)
   const [tasks, setTasks] = useState(loadTasks());
 
   function saveTasks() {
@@ -63,11 +65,15 @@ function App() {
 
   return (
     <div className="App">
+      <h1>Todo List Örneği</h1>
       <form id="new-task-form" onSubmit={(e) => handleSubmit(e)}>
         <input ref={textRef} type="text" id="new-task-title" />
         <button type="submit">Add</button>
       </form>
       <ul className="list">{renderNots()}</ul>
+      <h1>useRef Hook'unda Örnek</h1>
+      <input type="text" ref={asdd} onChange={()=>console.log(asdd.current?.value)} />
+      <button >BAS</button>
     </div>
   );
 }
