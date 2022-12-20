@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { v4 as uuidV4 } from "uuid";
 import "./App.css";
 
@@ -12,11 +12,11 @@ interface Task{
 
 function App() {
    const textRef = React.useRef<HTMLInputElement | null>(null);
-
-  const tasks:Task[]=loadTasks()
+const [tasks, setTasks] = useState(loadTasks());
 
   function saveTasks() {
     localStorage.setItem("TASK", JSON.stringify(tasks));
+    loadTasks()
   }
 
   function loadTasks(): Task[] {
@@ -36,7 +36,8 @@ const newTask: Task = {
   completed: false,
   createdAt: new Date(),
 };
-tasks.push(newTask);
+setTasks([...tasks,newTask]);
+// tasks.push(newTask);
 
 (textRef.current as HTMLInputElement).value = "";
 saveTasks()
@@ -55,15 +56,29 @@ saveTasks()
 //   item.append(label);
 //   list?.append(item);
 // }
-const ethem = (task:Task[]): void => {};
+const ethem = (task: React.ChangeEvent<HTMLInputElement>): void => {
+  console.log(task);
+  console.log(task.currentTarget.value)
+};
 
 
 const renderNots = (): JSX.Element[] => {
-    return tasks.map((task) => {
+    return tasks?.map((task) => {
+
       return (
         <li key={task.id}>
           <span>{task.title}</span>
-          <input type="checkbox" onClick={()=>ethem(task)}/>
+
+          <input
+            type="checkbox"
+            onChange={() => {
+              task.completed = !task.completed;
+              saveTasks();
+              setTasks(tasks.map((tas)=>tas));
+              
+            }}
+            checked={task.completed}
+          />
         </li>
       );
    
@@ -72,14 +87,11 @@ const renderNots = (): JSX.Element[] => {
   
   return (
     <div className="App">
-      <ul className="list">
-        {renderNots()
-   }
-      </ul>
       <form id="new-task-form" onSubmit={(e) => handleSubmit(e)}>
         <input ref={textRef} type="text" id="new-task-title" />
         <button type="submit">Add</button>
       </form>
+      <ul className="list" >{renderNots()}</ul>
     </div>
   );
 }
