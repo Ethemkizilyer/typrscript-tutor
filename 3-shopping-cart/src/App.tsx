@@ -6,8 +6,6 @@ import { StyledButton, Wrapper } from "./App.styles";
 import Cart from "./Cart/Cart";
 import Item from "./Item/Item";
 
-
-
 export type CartItemType = {
   id: number;
   category: string;
@@ -18,11 +16,8 @@ export type CartItemType = {
   amount: number;
 };
 
-
-
 const getProducts = async (): Promise<CartItemType[]> => {
-  return(
-  await (await fetch(`https://fakestoreapi.com/products`)).json())
+  return await (await fetch(`https://fakestoreapi.com/products`)).json();
 };
 
 function App(): JSX.Element {
@@ -37,7 +32,20 @@ function App(): JSX.Element {
   const getTotalItems = (items: CartItemType[]) =>
     items.reduce((ack: number, item) => ack + item.amount, 0);
 
-  const handleAddToCart = (clickedItem: CartItemType) => null;
+  const handleAddToCart = (clickedItem: CartItemType) => {
+    setCartItems(prev => {
+      const isItemInCart = prev.find((item) => item.id === clickedItem.id);
+
+      if (isItemInCart) {
+        return prev.map((item) =>
+          item.id === clickedItem.id
+            ? { ...item, amount: item.amount + 1 }
+            : item
+        );
+      }
+      return [...prev, { ...clickedItem, amount: 1 }];
+    });
+  };
 
   const handleRemoveFromCart = () => null;
 
