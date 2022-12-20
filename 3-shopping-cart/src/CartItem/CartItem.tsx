@@ -9,10 +9,10 @@ import * as React from 'react';
 interface ICartItemProps {
 }
 
-const CartItem = () => {
-  <Wrapper>
-
-  </Wrapper>
+const CartItem:React.FC = () => {
+ return ( <div>
+    Cart Item
+  </div>)
 };
 
 export default CartItem;

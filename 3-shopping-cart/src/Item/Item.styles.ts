@@ -11,6 +11,7 @@ height: 100%;
 
 button{
     border-radius: 0 0 20px 20px;
+    
 }
 
 img{

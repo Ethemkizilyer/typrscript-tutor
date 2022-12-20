@@ -3,6 +3,7 @@ import { Badge, Drawer, Grid, LinearProgress } from "@mui/material";
 import { useState } from "react";
 import { useQuery } from "react-query";
 import { StyledButton, Wrapper } from "./App.styles";
+import Cart from "./Cart/Cart";
 import Item from "./Item/Item";
 
 
@@ -46,11 +47,11 @@ function App(): JSX.Element {
   return (
     <Wrapper>
       <Drawer anchor="right" open={cartOpen} onClose={() => setCartOpen(false)}>
-        {/* <Cart
+        <Cart
           cartItems={cartItems}
           addToCart={handleAddToCart}
           removeFromCart={handleRemoveFromCart}
-        /> */}
+        />
       </Drawer>
 
       <StyledButton onClick={() => setCartOpen(true)}>
