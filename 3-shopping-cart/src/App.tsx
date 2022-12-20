@@ -47,7 +47,18 @@ function App(): JSX.Element {
     });
   };
 
-  const handleRemoveFromCart = () => null;
+  const handleRemoveFromCart = (id:number) => {
+    setCartItems(prev=>(
+      prev.reduce((ack,item)=>{
+if(item.id===id) {
+  if(item.amount === 1)  return ack;
+  return [...ack,{...item,amount:item.amount-1}]
+}else{
+  return [...ack,item]
+}
+      },[] as CartItemType[])
+    ))
+  };
 
   if (isLoading) return <LinearProgress />;
   if (error) return <div>Something went wrong...</div>;
@@ -63,8 +74,8 @@ function App(): JSX.Element {
       </Drawer>
 
       <StyledButton onClick={() => setCartOpen(true)}>
-        <Badge badgeContent={getTotalItems(cartItems)} color="error">
-          <AddShoppingCart />
+        <Badge badgeContent={getTotalItems(cartItems)} color="info">
+          <AddShoppingCart  />
         </Badge>
       </StyledButton>
 
