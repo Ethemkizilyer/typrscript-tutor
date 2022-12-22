@@ -1,12 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Currencies } from "../App";
+import { Currencies } from "../bitcoinTypes";
 
 type AppState = {
     currency:Currencies
 }
 
-const initialState:AppState={
-    currency:Currencies.TRY
+export const initialState:AppState={
+    currency:Currencies.USD
 }
 
 export const appSlice=createSlice({

@@ -15,4 +15,4 @@ export const Wrapper=styled.div`
         border-radius: 40px;
         margin-top: 40px;
     }
-`
+`;
