@@ -9,10 +9,10 @@ export const bitcoinApi = createApi({
   reducerPath: "bitcoinApi",
   baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
   endpoints: (builder) => ({
-    getBitcoinData: builder.query<BitcoinData, undefined>({
+    getBitcoinDat: builder.query<BitcoinData, undefined>({
       query: () => "/ticker",
     }),
   }),
 });
 
-export const { useGetBitcoinDataQuery } = bitcoinApi;
+export const { useGetBitcoinDatQuery } = bitcoinApi;

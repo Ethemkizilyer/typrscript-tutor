@@ -2,7 +2,7 @@ import { Wrapper } from "./App.style";
 import axios from "axios";
 import { useAppDispatch, useAppSelector } from "./reduxHooks";
 import { changeCurrency } from "./features/appSlice";
-import { useGetBitcoinDataQuery } from "./services";
+import { useGetBitcoinDatQuery } from "./services";
 
 
 
@@ -36,7 +36,7 @@ const App = () => {
   //     refetchInterval: 5000
   //   }
   // );
-  const { data, isLoading, error } = useGetBitcoinDataQuery(undefined, {
+  const { data, isLoading, error } = useGetBitcoinDatQuery(undefined, {
     pollingInterval: INTERVAL_TIME
   });
 
