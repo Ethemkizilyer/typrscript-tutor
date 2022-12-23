@@ -1,6 +1,6 @@
 import {createApi,fetchBaseQuery} from "@reduxjs/toolkit/query/react"
 
- type Type={
+export interface Type {
   name:string,
   surname:string,
   age:number,
@@ -15,7 +15,7 @@ export const data = createApi({
   reducerPath: "users",
   baseQuery:fetchBaseQuery({baseUrl: BASE_URL}),
   endpoints:builder=>({
-    getUsers:builder.query<Type,undefined>({
+    getUsers:builder.query<Type[],undefined>({
 query:()=>"/words"
     }),
     contact:builder.query<Type,string>({
