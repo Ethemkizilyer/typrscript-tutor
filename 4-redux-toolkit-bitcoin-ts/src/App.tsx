@@ -3,11 +3,13 @@ import axios from "axios";
 import { useAppDispatch, useAppSelector } from "./reduxHooks";
 import { changeCurrency } from "./features/appSlice";
 import { useGetBitcoinDatQuery } from "./services";
+import Pagination from "./pagination";
 
 
 
 
 const INTERVAL_TIME = 5000; // ms
+
 
 
 
@@ -65,6 +67,7 @@ const App = () => {
           </h2>
         </div>
       </>
+      {/* <Pagination/> */}
     </Wrapper>
   );
 };
