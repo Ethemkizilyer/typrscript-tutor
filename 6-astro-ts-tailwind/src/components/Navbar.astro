@@ -15,14 +15,14 @@ const items=[
 ]
 ---
 
-<div>
-    <div>
+<div class="flex bg-black text-white items-center">
+    <div class="font-bold text-lg ml-4">
         BAKARLAR
     </div>
-    <div>
-        <ul>
+    <div class="ml-auto">
+        <ul class="flex">
         {items.map(item=>(
-            <li><a href={item.Path2D}><strong>{item.title}</strong></a></li>
+            <li><a class="p-4 block hover:bg-gray-700" href={item.Path2D}><strong>{item.title}</strong></a></li>
         ))}
         </ul>
     </div>

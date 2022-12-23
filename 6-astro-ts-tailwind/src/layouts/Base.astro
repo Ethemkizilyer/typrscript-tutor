@@ -38,17 +38,17 @@ import Navbar from "@components/Navbar.astro";
             font-weight: 700;
           
           }
-          body{
-            font-family: Inter,sans-serif;
-          }
+       
         </style>
 
     </head>
 
     <body>
         <Navbar/>
-       
-<slot/> <!--slot react-routerdaki Qutlet mantığıyla aynı  -->
+       <div class="max-w-5xl mx-auto mt-16">
+        <slot/> <!--slot react-routerdaki Qutlet mantığıyla aynı  -->
+    </div>
+
     </body>
 </html>
 
