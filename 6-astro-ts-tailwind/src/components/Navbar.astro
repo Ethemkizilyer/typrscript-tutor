@@ -1,0 +1,29 @@
+---
+const items=[
+    {
+        title:"Anasayfa",
+        Path2D:"/"
+    },
+    {
+        title:"Blog",
+        Path2D:"/blog"
+    },
+    {
+        title:"Hakkımızda",
+        Path2D:"/hakkımızda"
+    },
+]
+---
+
+<div>
+    <div>
+        BAKARLAR
+    </div>
+    <div>
+        <ul>
+        {items.map(item=>(
+            <li><a href={item.Path2D}><strong>{item.title}</strong></a></li>
+        ))}
+        </ul>
+    </div>
+</div>

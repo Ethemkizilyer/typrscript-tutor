@@ -1,11 +1,12 @@
 ---
 interface Props{
     title:string;
-    content:string;
+
 
 };
 
-const { title,content } = Astro.props;
+const { title } = Astro.props;
+import Navbar from "@components/Navbar.astro";
 ---
 
 <!DOCTYPE html>
@@ -17,17 +18,37 @@ const { title,content } = Astro.props;
         <meta name="viewport" content="width=device-width, initial-scale=1"> 
         <!--  responsive duyarlı olması için burası yazılacak Örrn:telde yaklaştırma uzaklaştırma// -->
         <style>
-            body:not(.asd) {color:lawngreen;}
-            h1 {color:orange}
+          @font-face{
+            font-family: "Inter";
+            src: url("/fonts/Inter-Regular.woff2") format("woff2");
+            font-display: swap;
+            font-weight: 400;
+          }
+          @font-face{
+            font-family: "Inter";
+            src: url("/fonts/Inter-Italic.woff2") format("woff2");
+            font-display: swap;
+            font-weight: 400;
+            font-style: italic;
+          }
+          @font-face{
+            font-family: "Inter";
+            src: url("/fonts/Inter-Bold.woff2") format("woff2");
+            font-display: swap;
+            font-weight: 700;
+          
+          }
+          body{
+            font-family: Inter,sans-serif;
+          }
         </style>
 
     </head>
 
     <body>
-        <slot/>
-        {content}
-        <h1 class="asd">NABER</h1>
-        Deneme
+        <Navbar/>
+       
+<slot/> <!--slot react-routerdaki Qutlet mantığıyla aynı  -->
     </body>
 </html>
 
