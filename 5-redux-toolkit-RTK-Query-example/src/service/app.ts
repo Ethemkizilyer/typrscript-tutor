@@ -10,7 +10,7 @@ export interface Type {
 
 const BASE_URL = "https://63878fb8d9b24b1be3f44043.mockapi.io";
 
-
+//URL yi ve beklenen bitiş noktalarını kullanarak(endpoints) bir hizmet tanımlayın
 export const data = createApi({
   reducerPath: "users",
   baseQuery:fetchBaseQuery({baseUrl: BASE_URL}),
@@ -23,5 +23,6 @@ query:()=>"/words"
     })
   })
 });
-
+// Componentlerde kullanım için oluşturulan hookları dışa aktarın. 
+// tanımlanan uç noktalara(endpoints) göre otomatik olarak oluşturuldu
 export const {useGetUsersQuery,useContactQuery}=data
