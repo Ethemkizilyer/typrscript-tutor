@@ -1,9 +1,26 @@
 ---
 import Base from "./Base.astro";
+
+const {title,date} = Astro.props.frontmatter
+
+const tarih= (date:string):string=> {
+    return new Date(date).toLocaleDateString("tr-TR", {
+        year:"numeric",
+        month:"long",
+        day:"numeric"
+    })
+}
 ---
 
 <Base title="blog post">
-<slot/>
+    <div class="mb-8">
+        <h1 class="text-3xl mb-2">{title}</h1>
+        <p>{tarih(date)}</p>
+    </div>
+     <div class="prose"> <!--prose orjinal style ekliyor nasıl aldıysan öyle görünür. -->
+       <slot/> 
+    </div>
+
 </Base>
 
 
