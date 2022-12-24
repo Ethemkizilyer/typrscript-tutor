@@ -12,6 +12,10 @@ type Post=MarkdownInstance<BlogPostFrontmatter>
 posts=posts.sort((a:Post,b:Post): number=>{
 return (a.frontmatter.date > b.frontmatter.date) ? -1 : 1 
 })
+
+if(import.meta.env.PROD){
+    posts= posts.filter(item=>!item.frontmatter.draft)
+}
  
 ---
 
@@ -19,7 +23,7 @@ return (a.frontmatter.date > b.frontmatter.date) ? -1 : 1
 <h1 class="mb-8 text-6xl">Blogs</h1>
 <div >
 {posts.map((item)=>(<div class="py-4 border-b first:border-t">
-    
+    {item.frontmatter.draft && <p class="bg-orange-700 text-white inline-block px-2">DRAFT </p>}
     <a class="text-blue-700 hover:underline" href={item.url}>
     {item.frontmatter.title}
     

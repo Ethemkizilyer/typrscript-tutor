@@ -2,6 +2,7 @@
 layout: "../../layouts/BlogPost.astro" # layout: "..." aralarındaki boşluk dahi önemli hata veriyor.
 title: Bu Benim İlk Paylaşımım
 date: 2022-12-24
+draft : true
 ---
 
  ATATÜRK’ÜN GENÇLİĞE HİTABESİ

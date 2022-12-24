@@ -6,13 +6,15 @@ import Base from "./Base.astro";
 
 type Props=MarkdownLayoutProps<BlogPostFrontmatter>
 
-const {title,date} = Astro.props.frontmatter
+const {title,date,draft} = Astro.props.frontmatter
 
 
 ---
 
 <Base title="blog post">
     <div class="mb-8">
+       
+    {draft && <p class="bg-orange-700 text-white inline-block px-2 mb-4">DRAFT </p>}
         <h1 class="text-3xl mb-2">{title}</h1>
         <p>{tarih(date)}</p>
     </div>
