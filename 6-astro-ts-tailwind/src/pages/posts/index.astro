@@ -1,17 +1,30 @@
 ---
-import Base from "@layouts/Base.astro";
+import Base from "@layouts/Base.astro"
 
-const posts = await Astro.glob("./*.md")
+import type{ BlogPostFrontmatter } from '@types'
+import { tarih } from "@utils";
+import type { MarkdownInstance } from "astro";
+
+let posts = await Astro.glob<BlogPostFrontmatter>('./*.md')
+
+type Post=MarkdownInstance<BlogPostFrontmatter>
+
+posts=posts.sort((a:Post,b:Post): number=>{
+return (a.frontmatter.date > b.frontmatter.date) ? -1 : 1 
+})
+ 
 ---
 
 <Base title="Blog Posts">
 <h1 class="mb-8 text-6xl">Blogs</h1>
 <div >
-{posts.map((item)=>(
-    <div class="py-4 border-b first:border-t">
+{posts.map((item)=>(<div class="py-4 border-b first:border-t">
+    
     <a class="text-blue-700 hover:underline" href={item.url}>
     {item.frontmatter.title}
+    
     </a>
+    <p>{tarih(item.frontmatter.date)}</p>
     </div>
     ))}
 </div>

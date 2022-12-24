@@ -1,15 +1,14 @@
 ---
+import type { BlogPostFrontmatter } from "@types";
+import { tarih } from "@utils";
+import type { MarkdownLayoutProps } from "astro";
 import Base from "./Base.astro";
+
+type Props=MarkdownLayoutProps<BlogPostFrontmatter>
 
 const {title,date} = Astro.props.frontmatter
 
-const tarih= (date:string):string=> {
-    return new Date(date).toLocaleDateString("tr-TR", {
-        year:"numeric",
-        month:"long",
-        day:"numeric"
-    })
-}
+
 ---
 
 <Base title="blog post">
