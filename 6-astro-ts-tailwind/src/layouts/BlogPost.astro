@@ -1,14 +1,44 @@
 ---
+// import fs from "node:fs/promises"
+import fs from "node:fs"
+import {Picture} from"@astrojs/image/components"
 import type { BlogPostFrontmatter } from "@types";
+
+
 import { tarih } from "@utils";
 import type { MarkdownLayoutProps } from "astro";
 import Base from "./Base.astro";
+
 
 type Props=MarkdownLayoutProps<BlogPostFrontmatter>
 
 const {title,date,draft} = Astro.props.frontmatter
 
+const {url}=Astro.props;
+const slug=url?.split('/')[2]
 
+const imgFormat=["jpg","jpeg","png","webp","avif","tiff","tif","gif","svg"]
+
+const imagePath=(filename:string):URL =>{
+    return new URL (`../../public/images/${filename}`,import.meta.url)
+}
+
+const foundImgFormat=imgFormat.find((format:string):boolean=>{
+    try{
+        fs.accessSync(imagePath(`${slug}.${format}`))
+        return true
+    }catch{
+        return false
+    }
+})
+
+// let imageExists=true
+// try {
+//     await fs.stat(new URL(`../../public/images/${slug}.jpg`,import.meta.url))
+// }catch{
+//     imageExists=false
+// }
+// Bu şekide bir try catch yapmazsam örneğin bir blog resmi yok buna rağmen bir resim görünüyor?? buraya tekrara bak. Ama trycacyh sayesinde yoksa alt dahi görünmesin yer kaplamasın
 ---
 
 <Base title="blog post">
@@ -18,6 +48,11 @@ const {title,date,draft} = Astro.props.frontmatter
         <h1 class="text-3xl mb-2">{title}</h1>
         <p>{tarih(date)}</p>
     </div>
+
+    {foundImgFormat !== undefined && <Picture class="mb-8" src={`/images/${slug}.${foundImgFormat}`} widths={[400,600,1024]} sizes="(max-width:400px) 400px, (max-width:600px) 600px,1024px" aspectRatio={"5:3"} alt="image"/>}
+<!-- 
+    {imageExists && <Picture class="mb-8" src={`/images/${slug}.jpg`} widths={[400,600,1024]} sizes="(max-width:400px) 400px, (max-width:600px) 600px,1024px" aspectRatio={"5:3"} alt="image"/>} -->
+    
      <div class="prose"> <!--prose orjinal style ekliyor nasıl aldıysan öyle görünür. -->
        <slot/> 
     </div>
