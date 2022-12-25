@@ -1,0 +1,30 @@
+---
+import { tarih } from "@utils";
+import type { MarkdownInstance } from "astro";
+import type{ BlogPostFrontmatter } from '@types'
+type Post=MarkdownInstance<BlogPostFrontmatter>
+
+interface Props {
+    posts: Post[];
+}
+
+ let { posts } = Astro.props;   
+posts=posts.sort((a:Post,b:Post): number=>{
+return (a.frontmatter.date > b.frontmatter.date) ? -1 : 1 
+})
+
+if(import.meta.env.PROD){
+    posts= posts.filter(item=>!item.frontmatter.draft)
+}
+ 
+---
+
+{posts.map((item)=>(<div class="py-4 border-b first:border-t">
+    {item.frontmatter.draft && <p class="bg-orange-700 text-white inline-block px-2">DRAFT </p>}
+    <a class="text-blue-700 hover:underline" href={item.url}>
+    {item.frontmatter.title}
+    
+    </a>
+    <p>{tarih(item.frontmatter.date)}</p>
+    </div>
+    ))}
