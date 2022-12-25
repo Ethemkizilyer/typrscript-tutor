@@ -1,6 +1,7 @@
 ---
 layout: "../../layouts/BlogPost.astro" # layout: "..." aralarındaki boşluk dahi önemli hata veriyor.
 title: Bu Benim İkinci Paylaşımım
+tags: ['Astro','Fikir']
 date: 2022-12-24
 ---
 
