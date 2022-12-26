@@ -4,7 +4,7 @@ import { data } from "./service/app"
 
 export const store = configureStore({
   reducer: {
-    // Oluşturulan küçültmeyi belirli bir üst düzey dilim olarak ekleyin
+    // Oluşturulan reducerı belirli bir üst düzey dilim olarak ekleyin
     [data.reducerPath]: data.reducer,
   },
   // Apı ara katman yazılımının eklenmesi önbelleğe alma, geçersiz kılma, yoklama sağlar,
